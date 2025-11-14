@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: #2e7d32;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.hero {
+  background: url('home.jpeg') no-repeat center center/cover;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+}
+
+.hero-text h2{
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  color:green;
+}
+
+.hero-text button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ffcc00;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.about-waste {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.waste-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.card {
+  background-color: white;
+  box-shadow: 0 0 10px #ccc;
+  padding: 20px;
+  margin: 10px;
+  width: 250px;
+  border-radius: 8px;
+}
+
+.tips {
+  background-color: #e8f5e9;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+#tip-box {
+  font-size: 1.2em;
+  margin-top: 10px;
+  font-style: italic;
+  color: #388e3c;
+}
+
+.cta {
+  background-color: #f1f8e9;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.cta button {
+  background-color: #43a047;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  margin-top: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+footer {
+  background-color: #2e7d32;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9em;
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Forgot Password</title>
+  <style>
+    body {
+      background: url('forgot.jpeg') no-repeat center center/cover;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      width: 350px;
+      text-align: center;
+    }
+
+    h2 { margin-bottom: 20px; }
+
+    label {
+      font-weight: bold;
+      display: block;
+      text-align: left;
+      margin: 10px 0 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #66a3a3;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #558f8f;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Reset Your Password</h2>
+    <form name="forgotForm" action="verify_user.php" method="POST" onsubmit="return validateForm()">
+      <label for="email">Enter Your Email:</label>
+      <input type="email" name="email" id="email" placeholder="Enter your email">
+
+      <label for="mobile">Enter your Mobile Number:</label>
+      <input type="text" name="mobile" id="mobile" placeholder="Enter your mobile number">
+
+      <div class="error" id="errorMsg"></div>
+
+      <button type="submit">Verify</button>
+    </form>
+  </div>
+
+  <script>
+    function validateForm() {
+      const email = document.getElementById("email").value.trim();
+      const mobile = document.getElementById("mobile").value.trim();
+      const errorMsg = document.getElementById("errorMsg");
+
+      if (email === "" || mobile === "") {
+        errorMsg.textContent = "Please fill all fields.";
+        return false;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        errorMsg.textContent = "Invalid email format.";
+        return false;
+      }
+
+      const mobileRegex = /^[0-9]{10}$/;
+      if (!mobileRegex.test(mobile)) {
+        errorMsg.textContent = "Enter a valid 10-digit mobile number.";
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</body>
+</html>

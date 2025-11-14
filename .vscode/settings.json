@@ -1,0 +1,37 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "xprotocol",
+                "enableSsl": "Disabled"
+            },
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 33060,
+            "driver": "MySQL",
+            "name": "mySQL",
+            "database": "logindb",
+            "username": "root",
+            "password": "Amey@123",
+            "connectionTimeout": 30
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "xprotocol",
+                "enableSsl": "Disabled"
+            },
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "mySQL",
+            "database": "registration",
+            "username": "root",
+            "password": "Amey@123",
+            "connectionTimeout": 30
+        }
+    ],
+    "liveServer.settings.port": 5501
+}

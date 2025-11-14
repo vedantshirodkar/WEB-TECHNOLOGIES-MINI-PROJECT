@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WasteWise - Recycle for a Better Tomorrow</title>
+  <link rel="stylesheet" href="home.css">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>♻️ Waste Management Portal</h1>
+  <nav>
+    <a href="login.html" id="login-link">Login</a>
+    <a href="home.html">Home</a>
+    <a href="wastehome.html">Types of Waste</a> 
+    <a href="pickup.html" class="protected">Waste Pickup</a>
+    <a href="center.html" class="protected">Centers</a>
+    <a href="about.html" class="protected">About Us</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-text">
+    <h2>Clean Earth. Green Future.</h2>
+    <p>Recycle today for a better tomorrow. Start your journey with us.</p>
+    <a href="login.html"><button id="get-started-btn">Get Started</button></a>
+  </div>
+</section>
+
+<section class="about-waste" id="about-waste">
+  <h2>Types of Waste</h2>
+  <div class="waste-cards">
+    <div class="card">
+      <h3>Plastic</h3>
+      <p>Sort and recycle clean plastic to prevent ocean pollution.</p>
+    </div>
+    <div class="card">
+      <h3>E-Waste</h3>
+      <p>Dispose of electronics safely to avoid toxic leakage.</p>
+    </div>
+    <div class="card">
+      <h3>Organic</h3>
+      <p>Compost food waste to enrich your soil naturally.</p>
+    </div>
+  </div>
+</section>
+
+<section class="tips">
+  <h2>♻️ Quick Recycling Tips</h2>
+  <p id="tip-box">Loading tip...</p>
+</section>
+
+<section class="cta">
+  <h2>Get Involved!</h2>
+  <p>Join our community cleanup drives or host your own.</p>
+  <button onclick="alert('More info coming soon!')">Learn How</button>
+</section>
+
+<footer>
+  <p>All rights reserved | © 2025</p>
+</footer>
+
+<script>
+  const tips = [
+    "Rinse your containers before recycling.",
+    "Avoid black plastic – many facilities can't sort it.",
+    "Compost your food waste for nutrient-rich soil.",
+    "Recycle electronics at certified e-waste centers.",
+    "Use reusable bags, bottles, and containers."
+  ];
+
+  let current = 0;
+  const tipBox = document.getElementById("tip-box");
+
+  function showTip() {
+    tipBox.textContent = tips[current];
+    current = (current + 1) % tips.length;
+  }
+
+  setInterval(showTip, 3000);
+  showTip();
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const loginLink = document.getElementById('login-link');
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const firstName = localStorage.getItem('first_name') || '';
+  });
+    
+    if (isLoggedIn) {
+        loginLink.textContent = 'Logout';
+        loginLink.href = '#';
+        loginLink.onclick = () => {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('first_name');
+            alert('Logged out successfully!');
+            window.location.href = 'login.html';
+        };
+    } else {
+        loginLink.textContent = 'Login';
+        loginLink.href = 'login.html';
+        loginLink.onclick = null;
+    }
+
+    
+    const protectedLinks = document.querySelectorAll('.protected');
+    protectedLinks.forEach(link => {
+        link.addEventListener('click', e => {
+            if (!isLoggedIn) {
+                e.preventDefault();
+                alert('Please log in to access this page.');
+                window.location.href = 'login.html';
+            }
+        });
+
+    const getStartedBtn = document.getElementById('get-started-btn');
+    getStartedBtn.onclick = () => {
+        if (!isLoggedIn) {
+            window.location.href = 'register.html';
+        } else {
+            alert('You are already logged in!');
+        }
+    };
+});
+</script>
+
+</body>
+</html>

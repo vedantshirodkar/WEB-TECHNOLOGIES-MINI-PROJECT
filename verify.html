@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="verify.css">
+  <title>VERIFY AND RESET PAGE</title>
+</head>
+<body>
+  <div class="success">Your Details Are Verified Successfully</div><br>
+
+  <form action="updatepass.php" method="POST" onsubmit="return validateForm()">
+    <p>New Password</p>
+    <input type="password" name="pass1" id="pass1" placeholder="Enter your new password" required>
+
+    <p>Re-type Password</p>
+    <input type="password" name="pass2" id="pass2" placeholder="Re-type your password" required>
+
+    <p>Click on submit & login again</p><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    function validateForm() {
+      const p1 = document.getElementById("pass1").value.trim();
+      const p2 = document.getElementById("pass2").value.trim();
+
+      if (p1 === "" || p2 === "") {
+        alert("Please fill in both password fields.");
+        return false;
+      }
+      if (p1 !== p2) {
+        alert("Passwords do not match!");
+        return false;
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>

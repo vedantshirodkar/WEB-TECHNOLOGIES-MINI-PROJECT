@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Recycling Centers</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.css" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('center.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center top;
+      background-attachment: fixed;
+      min-height: 100vh;
+    }
+    header {
+      background-color: #2e7d32;
+      color: white;
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .content { padding: 40px 30px; }
+    h2 { margin-bottom: 20px; font-size: 24px; color: #000; }
+    input[type="text"] {
+      width: 260px;
+      padding: 10px;
+      font-size: 16px;
+      margin-right: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #results {
+      margin-top: 30px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      max-width: 500px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    #map {
+      width: 100%;
+      height: 350px;
+      max-width: 600px;
+      margin-top: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.12);
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Waste Management Portal</h1>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="pickup.html">Waste Pickup</a>
+      <a href="center.html">Centers</a>
+      <a href="about.html">About Us</a>
+    </nav>
+  </header>
+
+  <div class="content">
+    <h2>Find Nearby Waste Management & Recycling Centers</h2>
+    <input type="text" id="stateInput" placeholder="Enter your state name">
+    <input type="text" id="areaInput" placeholder="Enter your area name">
+    <button id="searchBtn">Search</button>
+
+    <div id="results">Nearby centers will appear here..</div>
+    <div id="map"></div>
+  </div>
+
+  <script src="https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.js"></script>
+  <script src="center.js"></script>
+</body>
+</html>

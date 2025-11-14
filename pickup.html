@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pickup Request</title>
+  <link rel="stylesheet" href="pickup.css" />
+</head>
+<body>
+
+  <header>
+    <h1>♻️ Waste Management Portal</h1>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="pickup.html">Pickup</a>
+      <a href="center.html">Centers</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <h3>Step 1: Select Your State</h3>
+
+  <!-- Step 1 -->
+  <form id="stateForm">
+    <label for="state">Select State:</label>
+    <select id="state" required>
+      <option value="">-- Choose State --</option>
+      <option value="andhra_pradesh">Andhra Pradesh</option>
+      <option value="arunachal_pradesh">Arunachal Pradesh</option>
+      <option value="assam">Assam</option>
+      <option value="bihar">Bihar</option>
+      <option value="chhattisgarh">Chhattisgarh</option>
+      <option value="goa">Goa</option>
+      <option value="gujarat">Gujarat</option>
+      <option value="haryana">Haryana</option>
+      <option value="himachal_pradesh">Himachal Pradesh</option>
+      <option value="jharkhand">Jharkhand</option>
+      <option value="karnataka">Karnataka</option>
+      <option value="kerala">Kerala</option>
+      <option value="madhya_pradesh">Madhya Pradesh</option>
+      <option value="maharashtra">Maharashtra</option>
+      <option value="manipur">Manipur</option>
+      <option value="meghalaya">Meghalaya</option>
+      <option value="mizoram">Mizoram</option>
+      <option value="nagaland">Nagaland</option>
+      <option value="odisha">Odisha</option>
+      <option value="punjab">Punjab</option>
+      <option value="rajasthan">Rajasthan</option>
+      <option value="sikkim">Sikkim</option>
+      <option value="tamil_nadu">Tamil Nadu</option>
+      <option value="telangana">Telangana</option>
+      <option value="tripura">Tripura</option>
+      <option value="uttar_pradesh">Uttar Pradesh</option>
+      <option value="uttarakhand">Uttarakhand</option>
+      <option value="west_bengal">West Bengal</option>
+    </select>
+    <button type="button" onclick="showOptions()">Continue</button>
+  </form>
+
+  <!-- Step 2 buttons -->
+  <div id="actionButtons" style="display:none;">
+    <h3>Step 2: Choose an Option</h3>
+    <button onclick="showDetailsForm()">Request Pickup</button>
+    <button onclick="displayRequests()">Display Requests</button>
+  </div>
+
+  <!-- Step 3 - Request Pickup Form -->
+  <form id="detailsForm" action="pickup.php" method="POST" style="display:none;">
+    <h3>Request Pickup</h3>
+    <input type="hidden" id="stateHidden" name="state" />
+
+    <label>Name:</label>
+    <input type="text" name="name" required />
+
+    <label>Mobile:</label>
+    <input type="number" name="mobile" required />
+
+    <label>Area:</label>
+    <input type="text" name="area" required />
+
+    <label>Pincode:</label>
+    <input type="number" name="pincode" required />
+
+    <label>Type of Waste:</label>
+    <select name="type" required>
+      <option value="">-- Select Type --</option>
+      <option value="plastic">Plastic</option>
+      <option value="organic">Organic</option>
+      <option value="e-waste">E-Waste</option>
+    </select>
+
+    <input type="submit" value="Submit Pickup Request" />
+  </form>
+
+  <!-- Step 4 - Display Requests -->
+  <div id="displaySection" style="display:none;">
+    <h3>Pickup Requests for Selected State</h3>
+    <table id="pickupTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Mobile</th>
+          <th>Pincode</th>
+          <th>Area</th>
+          <th>Type</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        <tr><td colspan="5">Loading...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    function showOptions() {
+      const state = document.getElementById('state').value;
+      if (!state) {
+        alert('Please select a state.');
+        return;
+      }
+      document.getElementById('actionButtons').style.display = 'block';
+      document.getElementById('stateHidden').value = state;
+      document.getElementById('detailsForm').style.display = 'none';
+      document.getElementById('displaySection').style.display = 'none';
+    }
+
+    function showDetailsForm() {
+      document.getElementById('detailsForm').style.display = 'block';
+      document.getElementById('displaySection').style.display = 'none';
+    }
+
+    function displayRequests() {
+      const state = document.getElementById('state').value;
+      if (!state) {
+        alert('Please select a state.');
+        return;
+      }
+      document.getElementById('detailsForm').style.display = 'none';
+      document.getElementById('displaySection').style.display = 'block';
+
+      fetch(`display.php?state=${state}`)
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('tableBody').innerHTML = data;
+        })
+        .catch(err => {
+          document.getElementById('tableBody').innerHTML = `<tr><td colspan="5">Error loading data.</td></tr>`;
+        });
+    }
+  </script>
+</body>
+</html>
